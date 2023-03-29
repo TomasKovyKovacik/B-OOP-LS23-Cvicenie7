@@ -1,36 +1,31 @@
 package sk.stuba.fei.uim.oop;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Okno extends UniversalAdapter {
+public class Okno extends JFrame implements ChangeListener {
     public Okno() throws HeadlessException {
         super();
         this.setSize(300, 300);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.addKeyListener(this);
+
+        JSlider slider = new JSlider(JSlider.VERTICAL, 0, 50, 22);
+        slider.setMinorTickSpacing(1);
+        slider.setMajorTickSpacing(10);
+        slider.setPaintTicks(true);
+        slider.setPaintLabels(true);
+        this.add(slider);
+        slider.addChangeListener(this);
+
+
         this.setVisible(true);
     }
 
-
     @Override
-    public void keyPressed(KeyEvent e) {
-        System.out.println(e);
-        switch (e.getKeyCode()) {
-            case KeyEvent.VK_W:
-                System.out.println("dopredu");
-                break;
-            case KeyEvent.VK_A:
-                System.out.println("dolava");
-                break;
-            case KeyEvent.VK_D:
-                System.out.println("doprava");
-                break;
-            case KeyEvent.VK_S:
-                System.out.println("dozadu");
-                break;
-        }
+    public void stateChanged(ChangeEvent e) {
+        System.out.println(((JSlider) e.getSource()).getValue());
     }
-
 }
