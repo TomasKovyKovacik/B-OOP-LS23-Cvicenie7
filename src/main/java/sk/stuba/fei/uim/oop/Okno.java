@@ -6,37 +6,22 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-public class Okno extends JFrame implements MouseListener{
+public class Okno extends JFrame implements MouseMotionListener {
     public Okno() throws HeadlessException {
         super();
         this.setSize(300, 300);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.addMouseListener(this);
+        this.addMouseMotionListener(this);
         this.setVisible(true);
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
-        System.out.println("KLIK : " + e.getPoint().toString());
+    public void mouseDragged(MouseEvent e) {
+        System.out.println("DRAG : " + e.getPoint().toString());
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
-        System.out.println("PRESSED : " + e.getPoint().toString());
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-        System.out.println("RELEASED : " + e.getPoint().toString());
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-        System.out.println("ENTERED : " + e.getPoint().toString());
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-        System.out.println("EXITED : " + e.getPoint().toString());
+    public void mouseMoved(MouseEvent e) {
+        System.out.println("Move : " + e.getPoint().toString());
     }
 }
